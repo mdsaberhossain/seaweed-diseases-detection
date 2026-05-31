@@ -4,12 +4,12 @@
 ### Prototype Mobile-Ready App for Seaweed Disease Detection Using Deep Learning
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Online-brightgreen)](https://seaweed-diseases-api.vercel.app)
-[![Accuracy](https://img.shields.io/badge/Accuracy-99%25-blue)](https://seaweed-diseases-api.vercel.app)
+[![Accuracy](https://img.shields.io/badge/Validation%20Accuracy-94.4%25-blue)](https://seaweed-diseases-api.vercel.app)
 [![Python](https://img.shields.io/badge/Python-3.11-yellow)](https://python.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.1-orange)](https://pytorch.org)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-**An AI-powered web application for automated seaweed disease classification to support aquaculture health monitoring. Built with EfficientNet-B2, FastAPI, and React. Supports 50 languages.**
+**A proof-of-concept prototype demonstrating the feasibility of deep learning for automated seaweed disease classification to support aquaculture health monitoring. Built with EfficientNet-B2, FastAPI, and React.**
 
 [🌐 Live Demo](https://seaweed-diseases-api.vercel.app) • [📖 API Docs](https://saber131-seaweed-disease-v2.hf.space/docs) • [🤗 HuggingFace](https://huggingface.co/spaces/Saber131/seaweed-disease-v2)
 
@@ -21,13 +21,13 @@
 
 Seaweed farming is a critical component of global aquaculture, yet disease outbreaks remain a major threat to production yield and farmer livelihoods. Early and accurate disease identification is essential for effective disease management.
 
-This project presents a **mobile-ready deep learning system** capable of identifying six seaweed health conditions from a single image, deployed as a publicly accessible web application. The system is designed to be accessible to farmers, researchers, and aquaculture professionals worldwide.
+This project presents a **proof-of-concept mobile-ready deep learning system** capable of identifying six seaweed health conditions from a single image, deployed as a publicly accessible web application. The system is designed to be accessible to farmers, researchers, and aquaculture professionals worldwide.
 
 ---
 
 ## 🎯 Key Features
 
-- ✅ **99% overall accuracy** across 6 disease classes
+- ✅ **94.4% validation accuracy** across 6 disease classes
 - ✅ **Mobile-ready** — works on any device with a browser
 - ✅ **50 languages supported** including RTL (Arabic, Hebrew, Persian)
 - ✅ **Real-time prediction** with confidence score
@@ -47,25 +47,23 @@ Upload any seaweed image and get an instant disease prediction with confidence s
 
 ## 📊 Results
 
-### Classification Performance
+### Training Performance
 
-| Class | Precision | Recall | F1-Score | Support |
-|---|---|---|---|---|
-| Bleached | 99% | 98% | 99% | 314 |
-| Diseased | 98% | 100% | 99% | 324 |
-| Epiphyte Infestation Diseases | 100% | 99% | 100% | 320 |
-| Healthy Seaweed | 99% | 99% | 99% | 316 |
-| Ice-Ice Diseases | 100% | 100% | 100% | 303 |
-| Not a Seaweed | 99% | 98% | 99% | 342 |
-| **Overall** | **99%** | **99%** | **99%** | **1919** |
-
-### Confusion Matrix
-
-![Confusion Matrix](assets/confusion_matrix.png)
+| Metric | Value |
+|---|---|
+| Best Validation Accuracy | 94.4% |
+| Best Epoch | 28 / 30 |
+| Final Training Accuracy | 99.4% |
+| Validation Loss | 0.49 |
+| Total Training Time | ~40 minutes (Tesla T4 GPU) |
 
 ### Training Curves
 
 ![Training Curves](assets/training_curves.png)
+
+### Confusion Matrix
+
+![Confusion Matrix](assets/confusion_matrix.png)
 
 ---
 
@@ -108,7 +106,6 @@ Disease Classification Result
 | Parameters | ~9.7M |
 | Training Epochs | 30 |
 | Best Validation Accuracy | 94.4% |
-| Overall Dataset Accuracy | 99% |
 | Framework | PyTorch + TIMM |
 
 ### Training Strategy
@@ -150,7 +147,7 @@ pip install -r requirements.txt
 uvicorn main:app --reload --port 8000
 ```
 
-API will be available at `http://localhost:8000`  
+API will be available at `http://localhost:8000`
 Interactive docs at `http://localhost:8000/docs`
 
 ### Frontend (Local)
@@ -171,7 +168,16 @@ Frontend will be available at `http://localhost:5173`
 - **Total Images:** 1,919
 - **Classes:** 6
 - **Images per class:** 300–350
-- **Split:** 85% training / 15% validation
+- **Split:** 85% training (1,632) / 15% validation (287)
+
+---
+
+## ⚠️ Limitations & Future Work
+
+- Dataset was collected from research paper screenshots due to the absence of a public benchmark dataset for seaweed diseases — real-world performance on field photographs may differ
+- Approximately 5–10% of images contained figure annotations such as scale bars and labels, mitigated through aggressive random cropping augmentation
+- The "Diseased" class is a compound category combining white rot, red rot, and microbial infections due to limited individual sample counts
+- Future work includes collecting real field photographs, expanding dataset size, implementing Grad-CAM visualization, and conducting clinical validation with domain experts
 
 ---
 
