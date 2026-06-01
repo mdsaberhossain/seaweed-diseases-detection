@@ -125,6 +125,8 @@ Disease Classification Result
 
 ```
 seaweed-disease-detection/
+├── train.py                 # Model training script
+├── evaluate.py              # Evaluation, confusion matrix, Grad-CAM
 ├── api/
 │   ├── main.py              # FastAPI inference server
 │   ├── Dockerfile           # Docker configuration
@@ -143,6 +145,20 @@ seaweed-disease-detection/
 ---
 
 ## How to Run
+
+### Training
+
+```bash
+pip install torch torchvision timm matplotlib
+python train.py
+```
+
+### Evaluation
+
+```bash
+pip install scikit-learn seaborn opencv-python
+python evaluate.py
+```
 
 ### Backend API
 
